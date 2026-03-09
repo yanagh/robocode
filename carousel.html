@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robocode — კარუსელები</title>
+  <link href="https://fonts.googleapis.com/css2?family=BPG+Nino+Mtavruli&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      background: #0a0a0a;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ── SECTION: wraps label + slide row ── */
+    .carousel-section {
+      display: flex;
+      flex-direction: column;
+      padding: 28px 36px 32px;
+    }
+    .carousel-section + .carousel-section {
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ── HORIZONTAL ROW OF SLIDES ── */
+    .slides-row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: flex-start;
+      padding-bottom: 8px;
+    }
+
+    /* ── SLIDE: fixed 700 × 700 px ── */
+    .slide {
+      width: 350px;
+      height: 350px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 0;
+      container-type: size;
+    }
+
+    /* ══════════════════════════════════════
+       CAROUSEL 1 — Arduino კურსი
+    ══════════════════════════════════════ */
+
+    /* — Slide 1: Hook — */
+    #c1-s1 {
+      background: #1646FF;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 6cqh;
+    }
+    #c1-s1::before {
+      content: '';
+      position: absolute;
+      width: 55cqh; height: 55cqh;
+      border-radius: 50%;
+      border: 5cqh solid rgba(255,255,255,0.06);
+      right: -12cqh; bottom: -12cqh;
+    }
+    #c1-s1 .tag {
+      background: #33F981; color: #000;
+      font-size: 1.5cqh; font-weight: 800;
+      padding: 0.8cqh 2.5cqh;
+      border-radius: 100px;
+      margin-bottom: 4cqh;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative; z-index: 1;
+    }
+    #c1-s1 h1 {
+      font-size: 8cqh; font-weight: 900;
+      color: #fff; line-height: 1.0;
+      margin-bottom: 3cqh;
+      position: relative; z-index: 1;
+    }
+    #c1-s1 h1 span { color: #E5FB6D; }
+    #c1-s1 .sub {
+      font-size: 2.2cqh; font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      position: relative; z-index: 1;
+      line-height: 1.4;
+    }
+
+    /* — Slide 2: What is Arduino — */
+    #c1-s2 { display: grid; grid-template-columns: 1fr 1fr; }
+    #c1-s2 .photo {
+      background-image: url("assets/photos/WhatsApp%20Image%202026-03-07%20at%2016.51.41%20(2).jpeg");
+      background-size: cover; background-position: center top;
+    }
+    #c1-s2 .content {
+      background: #1a2540;
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: 5cqh 4.5cqh;
+    }
+    #c1-s2 .num {
+      font-size: 8cqh; font-weight: 900;
+      color: #1646FF; line-height: 1;
+      opacity: 0.25; margin-bottom: 2cqh;
+    }
+    #c1-s2 h2 {
+      font-size: 4cqh; font-weight: 900;
+      color: #fff; line-height: 1.1;
+      margin-bottom: 2.5cqh;
+    }
+    #c1-s2 p {
+      font-size: 2cqh; font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+    }
+    #c1-s2 .accent { color: #33F981; font-weight: 800; }
+
+    /* — Slide 3: What They Build — */
+    #c1-s3 { display: flex; flex-direction: column; justify-content: flex-end; }
+    #c1-s3 .bg {
+      position: absolute; inset: 0;
+      background-image: url("assets/photos/WhatsApp%20Image%202026-03-07%20at%2016.51.41%20(3).jpeg");
+      background-size: cover; background-position: center;
+    }
+    #c1-s3 .overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.93) 45%, rgba(0,0,0,0.05) 100%);
+    }
+    #c1-s3 .content { position: relative; z-index: 2; padding: 0 5cqh 5cqh; }
+    #c1-s3 h2 {
+      font-size: 5cqh; font-weight: 900;
+      color: #fff; line-height: 1.05;
+      margin-bottom: 2.5cqh;
+    }
+    #c1-s3 h2 span { color: #FF7939; }
+    #c1-s3 .tags { display: flex; flex-wrap: wrap; gap: 1cqh; }
+    #c1-s3 .chip {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff; font-size: 1.8cqh; font-weight: 700;
+      padding: 0.9cqh 2cqh;
+      border-radius: 100px;
+    }
+
+    /* — Slide 4: Who It's For — */
+    #c1-s4 { display: grid; grid-template-columns: 1fr 1fr; }
+    #c1-s4 .content {
+      background: #E5FB6D;
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: 5cqh 4.5cqh;
+    }
+    #c1-s4 h2 {
+      font-size: 4.5cqh; font-weight: 900;
+      color: #000; line-height: 1.1; margin-bottom: 2.5cqh;
+    }
+    #c1-s4 p {
+      font-size: 2.1cqh; font-weight: 600;
+      color: #222; line-height: 1.5;
+    }
+    #c1-s4 .badge {
+      display: inline-block;
+      background: #1646FF; color: #fff;
+      font-size: 1.7cqh; font-weight: 800;
+      padding: 0.9cqh 2.4cqh;
+      border-radius: 100px;
+      margin-top: 3cqh;
+    }
+    #c1-s4 .photo {
+      background-image: url("assets/photos/WhatsApp%20Image%202026-02-28%20at%2016.44.12.jpeg");
+      background-size: cover; background-position: center top;
+    }
+
+    /* — Slide 5: Vibe — */
+    #c1-s5 { display: flex; align-items: flex-end; }
+    #c1-s5 .bg {
+      position: absolute; inset: 0;
+      background-image: url("assets/photos/WhatsApp%20Image%202026-02-28%20at%2016.44.11.jpeg");
+      background-size: cover; background-position: center top;
+    }
+    #c1-s5 .overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(22,70,255,0.85) 0%, rgba(0,0,0,0.25) 60%);
+    }
+    #c1-s5 .content { position: relative; z-index: 2; padding: 5cqh; }
+    #c1-s5 h2 {
+      font-size: 5.5cqh; font-weight: 900;
+      color: #fff; line-height: 1.1; margin-bottom: 2.5cqh;
+    }
+    #c1-s5 h2 em { font-style: normal; color: #33F981; }
+    #c1-s5 p {
+      font-size: 2.2cqh; font-weight: 600;
+      color: rgba(255,255,255,0.8); line-height: 1.5;
+    }
+
+    /* — Slide 6: CTA — */
+    #c1-s6 {
+      background: #1646FF;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center; padding: 6cqh;
+    }
+    #c1-s6::before {
+      content: '';
+      position: absolute;
+      width: 55cqh; height: 55cqh;
+      border-radius: 50%;
+      border: 5cqh solid rgba(255,255,255,0.06);
+      right: -12cqh; top: -12cqh;
+    }
+    #c1-s6 .logo { width: 16cqh; margin-bottom: 4cqh; position: relative; z-index: 2; }
+    #c1-s6 h2 {
+      font-size: 4.5cqh; font-weight: 900;
+      color: #fff; line-height: 1.1;
+      margin-bottom: 3.5cqh; position: relative; z-index: 2;
+    }
+    #c1-s6 .cta-btn {
+      background: #33F981; color: #000;
+      font-size: 1.8cqh; font-weight: 800;
+      padding: 1.4cqh 4cqh; border-radius: 100px;
+      margin-bottom: 3cqh; position: relative; z-index: 2;
+    }
+    #c1-s6 .contact {
+      font-size: 2cqh; font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7; position: relative; z-index: 2;
+    }
+    #c1-s6 .contact strong { color: #fff; font-weight: 800; }
+
+
+    /* ══════════════════════════════════════
+       CAROUSEL 2 — სწავლის გზა
+    ══════════════════════════════════════ */
+
+    /* — S1: Robot car hook — */
+    #c2-s1, #c3-s1 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-image:
+        linear-gradient(to right, rgba(12,40,180,0.92) 0%, rgba(12,40,180,0.55) 45%, rgba(12,40,180,0.0) 70%),
+        url("assets/photos/6.jpeg");
+      background-size: cover;
+      background-position: center 30%;
+    }
+    #c2-s1::after, #c3-s1::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      left: 0; width: 50%;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      mask-image: linear-gradient(to right, black 60%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
+      z-index: 0;
+    }
+    #c2-s1 .content, #c3-s1 .content {
+      padding: 5cqh 4cqh;
+      width: 50%;
+      position: relative;
+      z-index: 1;
+    }
+    #c2-s1 .kicker, #c3-s1 .kicker {
+      font-size: 1.4cqh; font-weight: 800;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: #33F981; margin-bottom: 2cqh;
+    }
+    #c2-s1 h1, #c3-s1 h1 {
+      font-size: 5.5cqh; font-weight: 900;
+      color: #fff; line-height: 1.05; margin-bottom: 2cqh;
+    }
+    #c2-s1 h1 span, #c3-s1 h1 span { color: #33F981; }
+    #c2-s1 .sub, #c3-s1 .sub {
+      font-size: 2cqh; font-weight: 600;
+      color: rgba(255,255,255,0.65); line-height: 1.4;
+    }
+
+    /* — S2: IT Start — split layout: photo left, vivid color panel right — */
+    #c2-s2, #c3-s2 { display: grid; grid-template-columns: 1fr 1fr; }
+    #c2-s2 .photo, #c3-s2 .photo {
+      background-image: url("assets/photos/itstart1.png");
+      background-size: cover; background-position: center top;
+    }
+    #c2-s2 .content, #c3-s2 .content {
+      background: #33F981;
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: 4.5cqh;
+    }
+    #c2-s2 .step, #c3-s2 .step {
+      font-size: 10cqh; font-weight: 900;
+      color: rgba(0,0,0,0.12); line-height: 1;
+      margin-bottom: auto;
+    }
+    #c2-s2 .badge, #c3-s2 .badge {
+      display: inline-block;
+      background: #000; color: #33F981;
+      font-size: 2cqh; font-weight: 900;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 1cqh 2.5cqh; border-radius: 100px;
+      margin-bottom: 2cqh;
+    }
+    #c2-s2 h2, #c3-s2 h2 {
+      font-size: 4cqh; font-weight: 900;
+      color: #000; line-height: 1.1;
+    }
+
+    /* — S3: Arduino Kids — full bleed photo, bottom gradient, large text — */
+    #c2-s3, #c3-s3 {
+      display: flex; flex-direction: column; justify-content: flex-start;
+      background-image:
+        linear-gradient(to bottom, rgba(0,0,0,0.78) 35%, rgba(0,0,0,0.08) 70%, transparent 100%),
+        url("assets/photos/WhatsApp%20Image%202026-02-28%20at%2013.23.44.jpeg");
+      background-size: cover;
+      background-position: center;
+    }
+    #c2-s3 .content, #c3-s3 .content { padding: 5cqh 5cqh 0; }
+    #c2-s3 .badge, #c3-s3 .badge {
+      display: inline-block;
+      background: #E5FB6D; color: #000;
+      font-size: 2cqh; font-weight: 900;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 1cqh 2.5cqh; border-radius: 100px;
+      margin-bottom: 2cqh;
+    }
+    #c2-s3 h2, #c3-s3 h2 {
+      font-size: 5.5cqh; font-weight: 900;
+      color: #fff; line-height: 1.05;
+    }
+    #c2-s3 h2 em, #c3-s3 h2 em { font-style: normal; color: #E5FB6D; }
+
+    /* — S4: Middle Embedded — solid dark card, big number, typographic — */
+    #c2-s4, #c3-s4 {
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: 5cqh;
+      background-image:
+        linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.72) 100%),
+        url("assets/photos/WhatsApp%20Image%202026-02-28%20at%2013.23.44%20(1).jpeg");
+      background-size: cover;
+      background-position: center;
+    }
+    #c2-s4 .top, #c3-s4 .top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    #c2-s4 .big-num, #c3-s4 .big-num {
+      font-size: 18cqh; font-weight: 900;
+      line-height: 1; color: #FF7939;
+      opacity: 0.5;
+    }
+    #c2-s4 .badge, #c3-s4 .badge {
+      display: inline-block;
+      background: #FF7939; color: #fff;
+      font-size: 3cqh; font-weight: 900;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 1.2cqh 2.8cqh; border-radius: 100px;
+      margin-bottom: 2cqh;
+    }
+    #c2-s4 .bottom, #c3-s4 .bottom {}
+    #c2-s4 h2, #c3-s4 h2 {
+      font-size: 7cqh; font-weight: 900;
+      color: #fff; line-height: 1.05;
+      margin-bottom: 2.5cqh;
+    }
+    #c2-s4 h2 em, #c3-s4 h2 em { font-style: normal; color: #FF7939; }
+    #c2-s4 .desc, #c3-s4 .desc {
+      font-size: 2cqh; font-weight: 600;
+      color: rgba(255,255,255,0.45); line-height: 1.5;
+    }
+
+    /* — S5: Pro Embedded — yellow kid, blue left gradient — */
+    #c2-s5, #c3-s5 {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      background-image:
+        linear-gradient(to right, rgba(22,70,255,0.88) 28%, rgba(22,70,255,0.0) 70%),
+        url("assets/photos/gameboy.png");
+      background-size: cover;
+      background-position: center right;
+    }
+    #c2-s5 .content, #c3-s5 .content { padding: 5cqh; }
+    #c2-s5 .badge, #c3-s5 .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2); color: #fff;
+      border: 1px solid rgba(255,255,255,0.5);
+      font-size: 2cqh; font-weight: 900;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 1cqh 2.5cqh; border-radius: 100px;
+      margin-bottom: 2.5cqh;
+    }
+    #c2-s5 h2, #c3-s5 h2 {
+      font-size: 5.5cqh; font-weight: 900;
+      color: #fff; line-height: 1.05;
+      margin-bottom: 2cqh;
+    }
+    #c2-s5 h2 em, #c3-s5 h2 em { font-style: normal; color: #E5FB6D; }
+    #c2-s5 .sub, #c3-s5 .sub {
+      font-size: 2cqh; font-weight: 600;
+      color: rgba(255,255,255,0.65); line-height: 1.5;
+    }
+
+    /* — S6: Senior & Expert — dark premium, gold accents, text at top — */
+    #c2-s6, #c3-s6 {
+      display: flex; flex-direction: column; justify-content: flex-start;
+      background-image:
+        linear-gradient(to bottom, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.1) 100%),
+        url("assets/photos/senior.png");
+      background-size: cover;
+      background-position: center top;
+    }
+    #c2-s6 .content, #c3-s6 .content { padding: 5cqh; }
+    #c2-s6 .badge, #c3-s6 .badge {
+      display: inline-block;
+      background: #E5C100; color: #000;
+      font-size: 2cqh; font-weight: 900;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 1cqh 2.5cqh; border-radius: 100px;
+      margin-bottom: 2.5cqh;
+    }
+    #c2-s6 h2, #c3-s6 h2 {
+      font-size: 5.5cqh; font-weight: 900;
+      color: #fff; line-height: 1.05;
+      margin-bottom: 2cqh;
+    }
+    #c2-s6 h2 em, #c3-s6 h2 em { font-style: normal; color: #E5C100; }
+    #c2-s6 .chips, #c3-s6 .chips { display: flex; gap: 1cqh; flex-wrap: wrap; }
+    #c2-s6 .chip, #c3-s6 .chip {
+      background: rgba(229,193,0,0.12);
+      border: 1px solid rgba(229,193,0,0.4);
+      color: #E5C100; font-size: 1.6cqh; font-weight: 700;
+      padding: 0.8cqh 1.8cqh; border-radius: 100px;
+    }
+
+    /* — Slide 7: CTA — */
+    #c2-s7, #c3-s7 {
+      background: linear-gradient(145deg, #1646FF 0%, #0a2bbf 100%);
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center; padding: 6cqh;
+    }
+    #c2-s7::before, #c3-s7::before {
+      content: '';
+      position: absolute;
+      width: 50cqh; height: 50cqh;
+      border-radius: 50%;
+      border: 4cqh solid rgba(255,255,255,0.06);
+      right: -10cqh; bottom: -10cqh;
+    }
+    #c2-s7 .logo, #c3-s7 .logo { width: 16cqh; margin-bottom: 3cqh; position: relative; z-index: 2; }
+    #c2-s7 h2, #c3-s7 h2 {
+      font-size: 13.5cqh; font-weight: 900;
+      color: #fff; line-height: 1.0;
+      margin-bottom: 3cqh; position: relative; z-index: 2;
+    }
+    #c2-s7 .tagline, #c3-s7 .tagline {
+      font-size: 6cqh; font-weight: 600;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 4cqh; position: relative; z-index: 2;
+      line-height: 1.3;
+    }
+    #c2-s7 .cta-btn, #c3-s7 .cta-btn {
+      background: #33F981; color: #000;
+      font-size: 5.4cqh; font-weight: 800;
+      padding: 2cqh 5cqh; border-radius: 100px;
+      margin-bottom: 3cqh; position: relative; z-index: 2;
+    }
+    #c2-s7 .contact, #c3-s7 .contact {
+      font-size: 6cqh; font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5; position: relative; z-index: 2;
+    }
+    #c2-s7 .contact strong, #c3-s7 .contact strong { color: #fff; font-weight: 800; }
+
+    /* ── INSTAGRAM overrides for last card ── */
+    #c3-s7 h2 { font-size: 9.45cqh; }
+    #c3-s7 .tagline { font-size: 4.2cqh; }
+    #c3-s7 .cta-btn { font-size: 3.78cqh; }
+    #c3-s7 .contact { font-size: 4.2cqh; }
+
+    /* ── INSTAGRAM FORMAT: 4:5 (1080×1350) ── */
+    .instagram-format .slide {
+      width: 350px;
+      height: 437px;
+    }
+
+    /* ── EXPORT BUTTONS ── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-dl-section {
+      cursor: pointer;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.15s, color 0.15s;
+    }
+    .btn-dl-section:hover {
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+    .btn-dl-section:disabled {
+      opacity: 0.4;
+      cursor: wait;
+    }
+    .slide-dl-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 100;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.15s, background 0.15s;
+      font-family: sans-serif;
+    }
+    .slide:hover .slide-dl-btn {
+      opacity: 1;
+    }
+    .slide-dl-btn:hover {
+      background: rgba(0,0,0,0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       CAROUSEL 1 — Arduino კურსი
+  ══════════════════════════════════════ -->
+  <section class="carousel-section">
+    <div class="section-label">კარუსელი 01 — Arduino კურსი</div>
+    <div class="slides-row">
+
+      <div class="slide" id="c1-s1">
+        <div class="tag">Arduino კურსი</div>
+        <h1>შენი შვილი<br/>აწყობს<br/><span>საკუთარ</span><br/>ელექტრონიკას</h1>
+        <p class="sub">Robocode — პრაქტიკული<br/>ტექნოლოგიების სკოლა</p>
+      </div>
+
+      <div class="slide" id="c1-s2">
+        <div class="photo"></div>
+        <div class="content">
+          <div class="num">01</div>
+          <h2>რა არის<br/>Arduino?</h2>
+          <p>ეს არის <span class="accent">მინი კომპიუტერი</span>, რომელიც ბავშვს საშუალებას აძლევს აწყოს ნამდვილი ელექტრონული მოწყობილობები და გაცოცხლოს ისინი კოდით.</p>
+        </div>
+      </div>
+
+      <div class="slide" id="c1-s3">
+        <div class="bg"></div>
+        <div class="overlay"></div>
+        <div class="content">
+          <h2>აწყვეს.<br/><span>დაპროგრამეს.</span><br/>დაინახეს შედეგი.</h2>
+          <div class="tags">
+            <span class="chip">სენსორები</span>
+            <span class="chip">LED-ები</span>
+            <span class="chip">სერვო-ძრავები</span>
+            <span class="chip">დისპლეები</span>
+            <span class="chip">რობოტები</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide" id="c1-s4">
+        <div class="content">
+          <h2>10–16 წლის<br/>ბავშვებისთვის</h2>
+          <p>წინასწარი ცოდნა საჭირო არ არის — ყველაფერს ნულიდან ვასწავლით. ნაბიჯ-ნაბიჯ, პრაქტიკულად.</p>
+          <span class="badge">კვირაში 2 გაკვეთილი</span>
+        </div>
+        <div class="photo"></div>
+      </div>
+
+      <div class="slide" id="c1-s5">
+        <div class="bg"></div>
+        <div class="overlay"></div>
+        <div class="content">
+          <h2>პირველ<br/>გაკვეთილზევე<br/><em>შედეგი ჩანს</em></h2>
+          <p>ჩვენი მოსწავლეები უკვე პირველ გაკვეთილზე ქმნიან სამუშაო ელექტრონულ სქემას.</p>
+        </div>
+      </div>
+
+      <div class="slide" id="c1-s6">
+        <img class="logo" src="assets/logo.png" alt="Robocode" />
+        <h2>რეგისტრაცია<br/>უფასო საცდელ<br/>გაკვეთილზე</h2>
+        <div class="cta-btn">+995 591 691 749</div>
+        <div class="contact">
+          <strong>+995 591 691 749</strong><br/>
+          Robocode — თბილისი
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       CAROUSEL 2 — სწავლის გზა
+  ══════════════════════════════════════ -->
+  <section class="carousel-section">
+    <div class="section-label">კარუსელი 02 — სწავლის გზა ტექნოლოგიებში</div>
+    <div class="slides-row">
+
+      <!-- S1: Robot car hook -->
+      <div class="slide" id="c2-s1">
+        <div class="content">
+          <div class="kicker">Robocode — სწავლის გზა</div>
+          <h1>გეზი <span>ტექნოლოგიების</span><br/>მომავლისკენ!</h1>
+          <p class="sub">როგორ იქცევა გართობა პროფესიად?</p>
+        </div>
+      </div>
+
+      <!-- S2: IT Start — split layout -->
+      <div class="slide" id="c2-s2">
+        <div class="photo"></div>
+        <div class="content">
+          <span class="badge">IT Start</span>
+          <h2>პირველი ნაბიჯები<br/>ციფრულ სამყაროში.</h2>
+        </div>
+      </div>
+
+      <!-- S3: Arduino Kids — full bleed photo, bottom gradient -->
+      <div class="slide" id="c2-s3">
+        <div class="content">
+          <span class="badge">Arduino Kids</span>
+          <h2>იდეების<br/><em>გაცოცხლება</em><br/>ინჟინერიით.</h2>
+        </div>
+      </div>
+
+      <!-- S4: Middle Embedded — solid card, typographic -->
+      <div class="slide" id="c2-s4">
+        <div class="bottom">
+          <span class="badge">Middle Embedded</span>
+          <h2>მუშაობა<br/><em>ნამდვილი</em><br/>ინჟინერივით.</h2>
+          <p class="desc">სქემები, პლატები, რეალური პროექტები.</p>
+        </div>
+      </div>
+
+      <!-- S5: Pro Embedded — yellow kid, blue left gradient -->
+      <div class="slide" id="c2-s5">
+        <div class="content">
+          <span class="badge">Pro Embedded</span>
+          <h2>მომავლის<br/>ტექნოლოგიები —<br/><em>IoT.</em></h2>
+          <p class="sub">ჩართე მოწყობილობები. ააშენე ქსელი.</p>
+        </div>
+      </div>
+
+      <!-- S6: Senior & Expert — dark premium, gold accents -->
+      <div class="slide" id="c2-s6">
+        <div class="content">
+          <span class="badge">Senior &amp; Expert</span>
+          <h2>ხელოვნური<br/>ინტელექტი<br/>და <em>AI Vision.</em></h2>
+          <div class="chips">
+            <span class="chip">Machine Learning</span>
+            <span class="chip">Computer Vision</span>
+            <span class="chip">Neural Networks</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- S7: CTA -->
+      <div class="slide" id="c2-s7">
+        <img class="logo" src="assets/logo.png" alt="Robocode" />
+        <h2>თამაშიდან —<br/>შემოქმედამდე!</h2>
+        <p class="tagline">განავითარე ინჟინერული<br/>აზროვნება ჩვენთან ერთად.</p>
+        <div class="cta-btn">+995 591 691 749</div>
+        <div class="contact">
+          პეკინის 34, თბილისი
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════
+       CAROUSEL 3 — Instagram 4:5 (1080×1350)
+  ══════════════════════════════════════ -->
+  <section class="carousel-section instagram-format">
+    <div class="section-label">კარუსელი 03 — Instagram 4:5 (1080×1350)</div>
+    <div class="slides-row">
+
+      <div class="slide" id="c3-s1">
+        <div class="content">
+          <div class="kicker">Robocode — სწავლის გზა</div>
+          <h1>გეზი <span>ტექნოლოგიების</span><br/>მომავლისკენ!</h1>
+          <p class="sub">როგორ იქცევა გართობა პროფესიად?</p>
+        </div>
+      </div>
+
+      <div class="slide" id="c3-s2">
+        <div class="photo"></div>
+        <div class="content">
+          <span class="badge">IT Start</span>
+          <h2>პირველი ნაბიჯები<br/>ციფრულ სამყაროში.</h2>
+        </div>
+      </div>
+
+      <div class="slide" id="c3-s3">
+        <div class="content">
+          <span class="badge">Arduino Kids</span>
+          <h2>იდეების<br/><em>გაცოცხლება</em><br/>ინჟინერიით.</h2>
+        </div>
+      </div>
+
+      <div class="slide" id="c3-s4">
+        <div class="bottom">
+          <span class="badge">Middle Embedded</span>
+          <h2>მუშაობა<br/><em>ნამდვილი</em><br/>ინჟინერივით.</h2>
+          <p class="desc">სქემები, პლატები, რეალური პროექტები.</p>
+        </div>
+      </div>
+
+      <div class="slide" id="c3-s5">
+        <div class="content">
+          <span class="badge">Pro Embedded</span>
+          <h2>მომავლის<br/>ტექნოლოგიები —<br/><em>IoT.</em></h2>
+          <p class="sub">ჩართე მოწყობილობები. ააშენე ქსელი.</p>
+        </div>
+      </div>
+
+      <div class="slide" id="c3-s6">
+        <div class="content">
+          <span class="badge">Senior &amp; Expert</span>
+          <h2>ხელოვნური<br/>ინტელექტი<br/>და <em>AI Vision.</em></h2>
+          <div class="chips">
+            <span class="chip">Machine Learning</span>
+            <span class="chip">Computer Vision</span>
+            <span class="chip">Neural Networks</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide" id="c3-s7">
+        <img class="logo" src="assets/logo.png" alt="Robocode" />
+        <h2>თამაშიდან —<br/>შემოქმედამდე!</h2>
+        <p class="tagline">განავითარე ინჟინერული<br/>აზროვნება ჩვენთან ერთად.</p>
+        <div class="cta-btn">+995 591 691 749</div>
+        <div class="contact">
+          პეკინის 34, თბილისი
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Export libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+  <script>
+    const EXPORT_WIDTH = 1080;
+
+    // Check libraries loaded
+    window.addEventListener('load', () => {
+      if (typeof html2canvas === 'undefined') {
+        alert('html2canvas failed to load. Check your internet connection and reload.');
+      }
+    });
+
+    function getScale(slideEl) {
+      return EXPORT_WIDTH / slideEl.offsetWidth;
+    }
+
+    const h2cOpts = (slideEl) => ({
+      scale: getScale(slideEl),
+      useCORS: false,
+      allowTaint: true,
+      logging: false,
+      width: slideEl.offsetWidth,
+      height: slideEl.offsetHeight,
+      backgroundColor: null,
+    });
+
+    async function exportCard(slideEl, filename) {
+      try {
+        const canvas = await html2canvas(slideEl, h2cOpts(slideEl));
+        canvas.toBlob(blob => saveAs(blob, filename), 'image/png');
+      } catch (err) {
+        console.error(err);
+        alert('Export failed: ' + err.message);
+      }
+    }
+
+    async function exportSection(sectionEl) {
+      const label = sectionEl.querySelector('.section-label-text').textContent.trim();
+      const slides = sectionEl.querySelectorAll('.slide');
+      const btn = sectionEl.querySelector('.btn-dl-section');
+
+      btn.disabled = true;
+      btn.textContent = '...';
+
+      try {
+        const zip = new JSZip();
+        for (let i = 0; i < slides.length; i++) {
+          const slide = slides[i];
+          btn.textContent = `${i + 1} / ${slides.length}`;
+          const canvas = await html2canvas(slide, h2cOpts(slide));
+          const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
+          const fname = (slide.id || `slide-${i+1}`) + '.png';
+          zip.file(fname, blob);
+        }
+        const zipBlob = await zip.generateAsync({ type: 'blob' });
+        const safeName = label.replace(/[^a-zA-Z0-9\u10D0-\u10FF\s_-]/g, '').trim().replace(/\s+/g, '-');
+        saveAs(zipBlob, safeName + '.zip');
+      } catch (err) {
+        console.error(err);
+        alert('Export failed: ' + err.message);
+      }
+
+      btn.disabled = false;
+      btn.textContent = '⬇ Download all';
+    }
+
+    // Inject buttons after DOM is ready
+    document.querySelectorAll('.carousel-section').forEach(section => {
+      const labelEl = section.querySelector('.section-label');
+
+      // Wrap label text in a span
+      const textSpan = document.createElement('span');
+      textSpan.className = 'section-label-text';
+      textSpan.textContent = labelEl.textContent;
+      labelEl.textContent = '';
+      labelEl.appendChild(textSpan);
+
+      // Section download button
+      const dlBtn = document.createElement('button');
+      dlBtn.className = 'btn-dl-section';
+      dlBtn.textContent = '⬇ Download all';
+      dlBtn.addEventListener('click', () => exportSection(section));
+      labelEl.appendChild(dlBtn);
+
+      // Per-card download buttons
+      section.querySelectorAll('.slide').forEach((slide, i) => {
+        const cardBtn = document.createElement('button');
+        cardBtn.className = 'slide-dl-btn';
+        cardBtn.title = 'Download PNG';
+        cardBtn.textContent = '↓';
+        cardBtn.addEventListener('click', e => {
+          e.stopPropagation();
+          const fname = (slide.id || `slide-${i+1}`) + '.png';
+          exportCard(slide, fname);
+        });
+        slide.appendChild(cardBtn);
+      });
+    });
+  </script>
+</body>
+</html>
